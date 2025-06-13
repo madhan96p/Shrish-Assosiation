@@ -257,7 +257,7 @@ function initializeTestimonials() {
     if (!testimonialSlider) return;
 
     // Auto-play testimonials
-    setInterval(nextTestimonial, 5000);
+    setInterval(nextTestimonial, 15000);
 
     // Navigation buttons
     if (prevBtn) prevBtn.addEventListener('click', prevTestimonial);
