@@ -3155,7 +3155,7 @@ section {
     color: #1cc05b;
     font-size: 24px;
     padding: 16px;
-    border-radius: 50%;
+    border-radius: 25px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     z-index: 999;
     transition: all 0.3s ease;

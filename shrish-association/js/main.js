@@ -296,44 +296,6 @@ function updateTestimonial() {
     });
 }
 
-// Contact Form
-function initializeContactForm() {
-    if (!contactForm) return;
-
-    contactForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        // Get form data
-        const formData = new FormData(this);
-        const data = Object.fromEntries(formData);
-
-        // Simulate form submission
-        submitContactForm(data);
-    });
-}
-
-function submitContactForm(data) {
-    const submitBtn = contactForm.querySelector('.submit-btn');
-    const originalText = submitBtn.innerHTML;
-
-    // Show loading state
-    submitBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12,4V2A10,10 0 0,0 2,12H4A8,8 0 0,1 12,4Z"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/></path></svg>Sending...';
-    submitBtn.disabled = true;
-
-    // Simulate API call
-    setTimeout(() => {
-        // Show success message
-        showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
-
-        // Reset form
-        contactForm.reset();
-
-        // Reset button
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-    }, 2000);
-}
-
 // Scroll Effects
 function initializeScrollEffects() {
     // Parallax effect for hero section
@@ -573,6 +535,58 @@ function initializeFAQ() {
 }
 
 // Load Projects Data
+if (contactForm) {
+    contactForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const formData = {
+            firstName: document.getElementById("firstName").value,
+            lastName: document.getElementById("lastName").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            projectType: document.getElementById("projectType").value,
+            budget: document.getElementById("budget").value,
+            timeline: document.getElementById("timeline").value,
+            message: document.getElementById("message").value,
+            newsletter: document.getElementById("newsletter").checked
+        };
+
+        const submitBtn = contactForm.querySelector("button[type='submit']");
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Submitting...";
+
+        const scriptURL = "https://script.google.com/macros/s/AKfycbw3BygC9dPMjcvuZ199EdZCX9N9E6SiGQou5UXu-ig0BEDcLjeMgCvOUSST0DmHdw1jOQ/exec"; // your new GAS endpoint
+
+        try {
+            await fetch(scriptURL, {
+                method: "POST",
+                body: JSON.stringify(formData),
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                mode: "no-cors"
+            });
+
+            // Optional WhatsApp confirmation
+            const message = `Hello ShRish Association,%0A%0A*New Project Inquiry*%0AName: ${formData.firstName} ${formData.lastName}%0AEmail: ${formData.email}%0APhone: ${formData.phone}%0AProject Type: ${formData.projectType}%0ABudget: ${formData.budget}%0ATimeline: ${formData.timeline}%0A---%0A${formData.message}`;
+            const whatsapp = confirm("Form submitted successfully! Want to confirm via WhatsApp?");
+            if (whatsapp) {
+                window.open(`https://wa.me/919176500207?text=${message}`, "_blank");
+            }
+
+            contactForm.reset();
+            submitBtn.innerText = "Send Message";
+            submitBtn.disabled = false;
+        } catch (error) {
+            alert("Submission failed. Please try again later.");
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Send Message";
+            console.error("Contact form error:", error);
+        }
+    });
+}
+
+AOS.init(); // if you're using animations
 async function loadProjectsData() {
     try {
         const response = await fetch('data/projects.json');
