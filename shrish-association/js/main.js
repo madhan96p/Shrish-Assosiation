@@ -229,23 +229,27 @@ function initializeProjectFilters() {
 }
 
 function filterProjects(filter) {
-    projectCards.forEach(card => {
-        const category = card.getAttribute('data-category');
+    const projectsGrid = document.getElementById('projects-grid');
 
-        if (filter === 'all' || category === filter) {
-            card.style.display = 'block';
-            setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }, 100);
+    if (projectsGrid) {
+        let filteredProjects;
+
+        if (filter === 'all') {
+            filteredProjects = projectsData;
         } else {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            setTimeout(() => {
-                card.style.display = 'none';
-            }, 300);
+            filteredProjects = projectsData.filter(project => project.category === filter);
         }
-    });
+
+        projectsGrid.innerHTML = ''; // Clear current projects
+
+        if (filteredProjects.length > 0) {
+            filteredProjects.forEach(project => {
+                projectsGrid.innerHTML += createProjectCard(project);
+            });
+        } else {
+            projectsGrid.innerHTML = '<p style="text-align: center; color: var(--steel-gray);">No projects found in this category.</p>';
+        }
+    }
 }
 
 // Testimonials
