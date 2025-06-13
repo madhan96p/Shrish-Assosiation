@@ -1324,7 +1324,7 @@ section {
 
 /* Contact CTA */
 .contact-cta {
-    background: var(--light-gray);
+    background: var(--secondary-blue);
     text-align: center;
 }
 
@@ -1356,7 +1356,7 @@ section {
 }
 
 .btn-primary {
-    background: var(--secondary-blue);
+    background: rgba(77, 97, 212, 0.726);
     color: var(--white);
 }
 
