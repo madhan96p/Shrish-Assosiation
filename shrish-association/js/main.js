@@ -638,24 +638,23 @@ function loadDefaultProjects() {
         },
         {
             id: 5,
-            title: "Luxury Villas",
-            type: "Residential",
-            category: "residential",
-            location: "Hillside Community",
-            image: "https://images.pexels.com/photos/373965/pexels-photo-373965.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
-            description: "Exclusive hillside villas with panoramic views and premium finishes.",
+            title: "Balaji Medical Centre - Mangalore",
+            type: "Medical Facility",
+            category: "healthcare",
+            location: "Mangalore, Karnataka",
+            image: "assets/img/Commercial.jpg", // or your actual path
             featured: false
         },
         {
             id: 6,
-            title: "Sustainable Office Building",
-            type: "Commercial",
-            category: "commercial",
-            location: "Green District",
-            image: "https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
-            description: "LEED-certified office building showcasing sustainable construction practices.",
+            title: "In-progress Sites at Velachery",
+            type: "Construction",
+            category: "residential", // or "mixed-use" if it's a blend
+            location: "Velachery, Chennai",
+            image: "assets/img/velachery-site.jpg", // plug in your image path here
             featured: false
         }
+
     ];
 
     renderProjects();
@@ -672,7 +671,7 @@ function renderProjects() {
 
     if (projectsPreview) {
         // Render only featured projects for home page
-        const featuredProjects = projectsData.filter(project => project.featured).slice(0, 3);
+        const featuredProjects = projectsData.filter(project => project.featured).slice(0, 2);
         projectsPreview.innerHTML = featuredProjects.map(project => createProjectCard(project)).join('');
     }
 }

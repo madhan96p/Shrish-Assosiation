@@ -50,6 +50,8 @@ html {
 body {
     font-family: var(--font-primary);
     line-height: 1.6;
+    /* body 100% width for mobile layout */
+    width: 100%;
     color: var(--dark-gray);
     background-color: var(--white);
     overflow-x: hidden;
