@@ -555,7 +555,7 @@ if (contactForm) {
         submitBtn.disabled = true;
         submitBtn.innerText = "Submitting...";
 
-        const scriptURL = "https://script.google.com/macros/s/AKfycbw3BygC9dPMjcvuZ199EdZCX9N9E6SiGQou5UXu-ig0BEDcLjeMgCvOUSST0DmHdw1jOQ/exec"; // your new GAS endpoint
+        const scriptURL = "https://script.google.com/macros/s/AKfycbwzRchGBCZ3ruHAX0KUa5CBG1K65wQk_XhRLmXHos78hDeTDdto3j1tr46Vrw8gc-vPHg/exec"; // your new GAS endpoint
 
         try {
             await fetch(scriptURL, {
