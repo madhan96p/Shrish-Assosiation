@@ -211,7 +211,7 @@ function createParticle(container) {
         }
     }, 15000);
 }
-
+ 
 // Project Filters
 function initializeProjectFilters() {
     filterButtons.forEach(button => {
