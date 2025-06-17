@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "title": "Modern Residence One",
+    "type": "Luxury Villa",
+    "category": "residential",
+    "location": "Chennai, TN",
+    "image": "assets/img/Residential.png",
+    "description": "A beautiful modern residential project.",
+    "featured": true,
+    "mapLink": "https://maps.google.com"
+  },
+  {
+    "id": 2,
+    "title": "Corporate Tower Alpha",
+    "type": "Office Building",
+    "category": "commercial",
+    "location": "Bengaluru, KA",
+    "image": "assets/img/Commercial.jpg",
+    "description": "A state-of-the-art commercial complex.",
+    "featured": false,
+    "mapLink": "https://maps.google.com"
+  },
+  {
+    "id": 3,
+    "title": "City Bridge Connect",
+    "type": "Suspension Bridge",
+    "category": "infrastructure",
+    "location": "Hyderabad, TS",
+    "image": "assets/img/infrastructure.jpg",
+    "description": "An vital infrastructure link for the city.",
+    "featured": true,
+    "mapLink": "https://maps.google.com"
+  }
+]
