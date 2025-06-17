@@ -29,47 +29,66 @@
     <meta property="og:image" content="https://shrishassociation.netlify.app/assets/icons/sh1.jpg">
     <meta property="og:url" content="https://shrishassociation.netlify.app/ventures">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="ShRish Association">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Our Ventures - ShRish Association">
     <meta name="twitter:description" content="Explore our ventures including construction, travel, and more.">
     <meta name="twitter:image" content="https://shrishassociation.netlify.app/assets/icons/sh1.jpg">
+    <!-- <meta name="twitter:site" content="@YourTwitterHandle"> -->
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "ShRish Association",
-  "url": "https://shrishassociation.netlify.app",
-  "logo": "https://shrishassociation.netlify.app/assets/icons/sh1.jpg",
-  "description": "ShRish Association represents a portfolio of ventures in construction, travel, and more — based in Chennai, Tamil Nadu.",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "5, Gangai Nagar 1st Main Rd, New Secretariat Colony, Gangai Nagar",
-    "addressLocality": "Velachery",
-    "addressRegion": "Tamil Nadu",
-    "postalCode": "600042",
-    "addressCountry": "IN"
-  },
-  "sameAs": [
-    "https://www.instagram.com/saravanaperumal0994/"
-  ],
-  "department": [
-    {
-      "@type": "Organization",
-      "name": "ShRish Travels",
-      "url": "https://shrishtravels.netlify.app/",
-      "description": "A trusted travel partner offering cab services across Chennai and Tamil Nadu, focused on safety and punctuality."
-    },
-    {
-      "@type": "Organization",
-      "name": "ShRish Construction",
-      "description": "A modern construction venture delivering residential, commercial, and infrastructure projects with durability and precision."
-    }
-  ]
-}
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "ShRish Association",
+        "url": "https://shrishassociation.netlify.app/ventures.html", // URL of this specific page for this context
+        "logo": "https://shrishassociation.netlify.app/assets/icons/sh1.jpg",
+        "description": "ShRish Association represents a portfolio of ventures in construction (ShRish Construction) and travel (ShRish Travels), based in Chennai, Tamil Nadu.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "5, Gangai Nagar 1st Main Rd, New Secretariat Colony, Gangai Nagar",
+          "addressLocality": "Velachery",
+          "addressRegion": "Tamil Nadu",
+          "postalCode": "600042",
+          "addressCountry": "IN"
+        },
+        "sameAs": [
+          "https://www.instagram.com/saravanaperumal0994/"
+        ],
+        "department": [
+          {
+            "@type": "Organization",
+            "name": "ShRish Travels",
+            "url": "https://shrishtravels.netlify.app/",
+            "description": "A trusted travel partner offering cab services across Chennai and Tamil Nadu, focused on safety and punctuality."
+          },
+          {
+            "@type": "Organization",
+            "name": "ShRish Construction",
+            "url": "https://shrishassociation.netlify.app/",
+            "description": "A modern construction venture delivering residential, commercial, and infrastructure projects with durability and precision."
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home", // Assuming home is ShRish Construction's main page
+          "item": "https://shrishassociation.netlify.app/index.html"
+        },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Our Ventures"
+        }]
+      }
+    ]
 </script>
 
 </head>

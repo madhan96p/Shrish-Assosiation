@@ -31,13 +31,13 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeAnimations();
     initializeCounters();
     initializeParticles();
-    initializeProjectFilters();
     initializeTestimonials();
     initializeContactForm();
     initializeScrollEffects();
     initializeCTAButtons();
     initializeProjectModal();
     initializeFAQ();
+    initializeProjectFilters(); // Initialize filters
     loadProjectsData();
 });
 
@@ -231,24 +231,25 @@ function initializeProjectFilters() {
 function filterProjects(filter) {
     const projectsGrid = document.getElementById('projects-grid');
 
-    if (projectsGrid) {
+    if (projectsGrid && projectsData) { // Ensure projectsData is available
         let filteredProjects;
 
         if (filter === 'all') {
             filteredProjects = projectsData;
         } else {
-            filteredProjects = projectsData.filter(project => project.category === filter);
+            filteredProjects = projectsData.filter(project => project && project.category === filter);
         }
 
-        projectsGrid.innerHTML = ''; // Clear current projects
-
+        let content = '';
         if (filteredProjects.length > 0) {
-            filteredProjects.forEach(project => {
-                projectsGrid.innerHTML += createProjectCard(project);
-            });
+            content = filteredProjects.map(project => createProjectCard(project)).join('');
         } else {
-            projectsGrid.innerHTML = '<p style="text-align: center; color: var(--steel-gray);">No projects found in this category.</p>';
+            content = '<p style="text-align: center; color: var(--steel-gray);">No projects found in this category.</p>';
         }
+        projectsGrid.innerHTML = content;
+    } else if (projectsGrid) {
+        // Handle case where projectsGrid exists but projectsData is not yet loaded
+        projectsGrid.innerHTML = '<p style="text-align: center; color: var(--steel-gray);">Loading projects...</p>';
     }
 }
 
@@ -591,19 +592,25 @@ async function loadProjectsData() {
     try {
         const response = await fetch('data/projects.json');
         if (response.ok) {
-            projectsData = await response.json();
-            renderProjects();
+            try {
+                projectsData = await response.json();
+                setupProjectsDisplay();
+            } catch (jsonError) {
+                console.error('Failed to parse projects.json:', jsonError, '. Loading default projects.');
+                loadDefaultProjects();
+            }
         } else {
-            // Fallback to default projects if JSON file doesn't exist
+            console.warn(`Failed to load projects.json (status: ${response.status}). Loading default projects.`);
             loadDefaultProjects();
         }
     } catch (error) {
-        console.log('Loading default projects...');
+        console.error('Error fetching projects.json:', error, '. Loading default projects.');
         loadDefaultProjects();
     }
 }
 
 function loadDefaultProjects() {
+    console.log('Loading default projects data...');
     projectsData = [
         {
             id: 1,
@@ -670,23 +677,36 @@ function loadDefaultProjects() {
         }
 
     ];
-
-    renderProjects();
+    setupProjectsDisplay();
 }
 
-function renderProjects() {
-    const projectsGrid = document.getElementById('projects-grid');
+function setupProjectsDisplay() {
+    renderProjectsPreview(); // For home page featured projects
+    renderInitialProjectsGrid(); // For the main projects page grid
+}
+
+function renderProjectsPreview() {
     const projectsPreview = document.getElementById('projects-preview');
-
-    if (projectsGrid) {
-        // Render all projects for projects page
-        projectsGrid.innerHTML = projectsData.map(project => createProjectCard(project)).join('');
-    }
-
-    if (projectsPreview) {
-        // Render only featured projects for home page
+    if (projectsPreview && projectsData && projectsData.length > 0) {
         const featuredProjects = projectsData.filter(project => project.featured).slice(0, 2);
-        projectsPreview.innerHTML = featuredProjects.map(project => createProjectCard(project)).join('');
+        if (featuredProjects.length > 0) {
+            projectsPreview.innerHTML = featuredProjects.map(project => createProjectCard(project)).join('');
+        } else {
+            // Optional: handle case where there are no featured projects
+            projectsPreview.innerHTML = '<p style="text-align: center; color: var(--steel-gray);">No featured projects to display at the moment.</p>';
+        }
+    }
+}
+
+function renderInitialProjectsGrid() {
+    const projectsGrid = document.getElementById('projects-grid');
+    if (projectsGrid && projectsData) { // Ensure data is available
+        const activeButton = document.querySelector('.filter-btn.active');
+        let initialFilter = 'all'; // Default to 'all'
+        if (activeButton) {
+            initialFilter = activeButton.getAttribute('data-filter') || 'all';
+        }
+        filterProjects(initialFilter); // Use filterProjects to render the initial state based on active filter
     }
 }
 

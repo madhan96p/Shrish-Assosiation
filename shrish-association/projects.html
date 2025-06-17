@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Projects - ShRish Construction</title>
     <meta name="description"
-        content="Explore our portfolio of completed construction projects including residential, commercial, and infrastructure developments.">
+        content="Explore the portfolio of ShRish Construction's completed projects, showcasing excellence in residential, commercial, and infrastructure developments.">
+    <meta name="keywords" content="Construction Projects, Project Portfolio, Residential Developments, Commercial Buildings, Infrastructure Works, ShRish Projects">
+    <meta name="author" content="ShRish Construction">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -17,6 +19,62 @@
     <!-- Favicons -->
     <link rel="icon" href="assets/icons/sh1.png" type="image/png">
 
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Our Projects - ShRish Construction">
+    <meta property="og:description"
+        content="Explore the portfolio of ShRish Construction's completed projects, showcasing excellence in residential, commercial, and infrastructure developments.">
+    <meta property="og:image" content="https://shrishassociation.netlify.app/assets/img/projects_og.jpg"> <!-- Consider a specific OG image for projects -->
+    <meta property="og:url" content="https://shrishassociation.netlify.app/projects.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="ShRish Construction">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Our Projects - ShRish Construction">
+    <meta name="twitter:description"
+        content="Explore the portfolio of ShRish Construction's completed projects, showcasing excellence in residential, commercial, and infrastructure developments.">
+    <meta name="twitter:image" content="https://shrishassociation.netlify.app/assets/img/projects_og.jpg"> <!-- Consider a specific Twitter image for projects -->
+    <!-- <meta name="twitter:site" content="@YourTwitterHandle"> -->
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Our Construction Projects Portfolio",
+      "url": "https://shrishassociation.netlify.app/projects.html",
+      "description": "A showcase of completed residential, commercial, and infrastructure projects by ShRish Construction.",
+      "mainEntity": {
+        "@type": "ItemList",
+        "description": "List of construction projects by ShRish Construction. Details for each project are loaded dynamically.",
+        "itemListOrder": "https://schema.org/ItemListOrderDescending", // Or Ascending, or Unordered
+        "numberOfItems": 0 // This should be updated dynamically if possible, or set to a representative number if static.
+        // itemListElement would ideally be populated if projects were static or via JS after loading
+      },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://shrishassociation.netlify.app/index.html"
+        },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Our Projects"
+        }]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "ShRish Construction",
+        "url": "https://shrishassociation.netlify.app",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://shrishassociation.netlify.app/assets/icons/sh1.jpg"
+        }
+      }
+    }
+    </script>
 </head>
 
 <body>
